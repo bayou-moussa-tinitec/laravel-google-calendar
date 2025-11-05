@@ -50,6 +50,13 @@ class Event
         $event->googleEvent = $googleEvent;
         $event->calendarId = $calendarId;
 
+        // If the Google Event has attendees, set them to the local property
+        if ($googleEvent->getAttendees()) {
+            $event->attendees = $googleEvent->getAttendees();
+        } else {
+            $event->attendees = [];
+        }
+
         return $event;
     }
 
